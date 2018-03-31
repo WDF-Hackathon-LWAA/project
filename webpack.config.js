@@ -19,7 +19,7 @@ module.exports = {
     chunks: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /jsx?$/,
         include: resolve(__dirname, './app'),

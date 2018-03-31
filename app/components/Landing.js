@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import store, { fetchPhotos, updateSearchTerm } from '../store';
+// import { connect } from 'react-redux';
+// import store, { fetchPhotos, updateSearchTerm } from '../store';
 
 class Landing extends Component {
 
@@ -19,8 +19,10 @@ class Landing extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+// const mapStateToProps = (state) => ({
 
-});
+// });
 
-export default connect(mapStateToProps)(Landing);
+// export default connect(mapStateToProps)(Landing);
+
+export default Landing;
