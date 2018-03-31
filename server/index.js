@@ -1,36 +1,67 @@
-'use strict';
+const path = require('path')
+const express = require('express')
+const router = express.Router();
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+const db = require('./db')
+const PORT = process.env.PORT || 8080
+const app = express()
+module.exports = app
 
-const express = require('express');
-const app = express();
 
-const bodyParser = require('body-parser');
-const { resolve } = require('path');
+const createApp = () => {
+    // logging middleware
+    app.use(morgan('dev'))
 
-// body parsing middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+    // body parsing middleware
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
 
-// static file-serving middleware
-app.use(express.static(resolve(__dirname, '..', 'public')));
+    app.use((req, res, next) => {
+        console.log('session', req.session)
+        next();
+    })
 
-// sends index.html for any requests that don't match API routes
-app.get('/*', function(req, res) {
-  res.redirect('/');
-});
+    // auth and api routes
+    // app.use('/auth', require('./auth'))
+    app.use('/api', require('./api'))
 
-app.use(function (req, res, next) {
-  const err = new Error('Not found.');
-  err.status = 404;
-  next(err);
-});
+    // static file-serving middleware
+    app.use(express.static(path.join(__dirname, '..', 'public')))
 
-app.use(function (err, req, res, next) {
-  console.error(err);
-  console.error(err.stack);
-  res.status(err.status || 500).send(err.message || 'Internal server error.');
-});
 
-const port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log(`The server is listening on port ${port}`);
-});
+    // any remaining requests with an extension (.js, .css, etc.) send 404
+    .use((req, res, next) => {
+        if (path.extname(req.path).length) {
+            const err = new Error('Not found')
+            err.status = 404
+            next(err)
+        } else {
+            next()
+        }
+    })
+
+    // sends index.html
+    app.use('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+    })
+
+    // error handling endware
+    app.use((err, req, res, next) => {
+        console.error(err)
+        console.error(err.stack)
+        res.status(err.status || 500).send(err.message || 'Internal server error.')
+    })
+}
+
+const startListening = () => {
+    // start listening (and create a 'server' object representing our server)
+    const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
+
+}
+
+const syncDb = () => db.sync({ force: false })
+
+syncDb()
+    .then(createApp)
+    .then(startListening);
