@@ -1,0 +1,13 @@
+body {
+  background: #F3F5F6;
+}
+
+
+
+/***
+MAIN EMPLOYER CONTAINER
+***/
+.employer-landing {
+  padding: 0;
+  border: 1px solid red;
+}
