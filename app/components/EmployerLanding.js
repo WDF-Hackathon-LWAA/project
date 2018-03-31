@@ -19,7 +19,7 @@ class EmployerLanding extends Component {
       <div className="employer-landing">
         <h2>Welcome back, {name}</h2>
         <br />
-        <h4>Your roles:</h4>
+        <h4>Your posted roles:</h4>
         <Link to={`/result/${roleId}`}><input type="submit" value="View a role" /></Link>
       </div>
     );
