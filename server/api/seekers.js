@@ -1,31 +1,44 @@
-const router = require('express').Router();
-const seekers = require('../db/models').Seeker;
-
+const router = require("express").Router();
+const seekers = require("../db/models").Seeker;
+const resumes = require("../db/models").Resume;
 
 router.get('/', (req, res, next) => {
-    seekers.findAll()
+    seekers
+        .findAll({
+            include: [{ model: resumes }]
+        })
         .then(people => {
-            res.json(people)
+            res.json(people);
         })
         .catch(next);
 });
 
 router.get('/:seekerId', (req, res, next) => {
-    seekers.findById(req.params.seekerId)
+    seekers
+        .findById({
+            where: {
+                id: req.params.seekerId
+            }
+        }, {
+            include: [{ model: resumes }]
+        })
         .then(person => {
-            res.json(person)
+            res.json(person);
         })
         .catch(next);
 });
 
 router.get('/:level', (req, res, next) => {
-    seekers.findAll({
+    seekers
+        .findAll({
             where: {
                 level: req.params.level
             }
+        }, {
+            include: [{ model: resumes }]
         })
         .then(people => {
-            res.json(people)
+            res.json(people);
         })
         .catch(next);
 });
