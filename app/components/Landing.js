@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 import SignUp from './SignUp';
 import SeekerLanding from './SeekerLanding';
 import SeekerSignUp from './SeekerSignUp';
+import LogIn from './LogIn';
 class Landing extends Component {
   // ES6 way to bind the methods
 
   render() {
 
    return (
-     <CompmanySignUp/>
+     <LogIn/>
    )
   }
 }

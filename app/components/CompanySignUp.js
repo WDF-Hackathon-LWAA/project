@@ -24,7 +24,7 @@ class CompanySignUp extends Component {
    return (
      <div class="company-signup">
      <form>
-       <input type="text" name="email" placeholder="EMAIL"/>
+       <input type="text" name="email" placeholder=""/>
        <br></br>
        <input type="text" name="email" placeholder="password"/>
        <br></br>

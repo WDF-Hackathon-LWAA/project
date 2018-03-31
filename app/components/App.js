@@ -9,7 +9,7 @@ export default function App() {
 
   return (
   <Switch>
-    <Route exact path="/" component={EmployerLanding} />
+    <Route exact path="/" component={Landing} />
     <Route exact path="/result/:id" component={Role} />
   </Switch>
   );

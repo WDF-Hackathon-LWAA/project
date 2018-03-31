@@ -27,9 +27,7 @@ class SeekerLanding extends Component{
         </div>
       </div>
     )
-  }
-
+  } 
 }
-//Potential code
-<button ></button>
+
 export default SeekerLanding;
