@@ -10,7 +10,7 @@ class Landing extends Component {
   render() {
 
    return (
-     <SeekerSignUp/>
+     <CompmanySignUp/>
    )
   }
 }
