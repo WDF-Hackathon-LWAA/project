@@ -1,36 +1,37 @@
-const {Resume, Seeker, Company, Position} = require('../server/db/models')
+const {Resume, Seeker, Company, Position, User} = require('../server/db/models')
 const db = require('../server/db')
 
+
 const exampleSeekers = [
-  { email: 'lucy@email.com', industries: 'fintech', level: 'junior' },
-  { email: 'bob@email.com', industries: 'fintech', level: 'junior' },
-  { email: 'tom@email.com', industries: 'adtech', level: 'junior' },
-  { email: 'wale@email.com', industries: 'adtech', level: 'mid' },
-  { email: 'anthony@email.com', industries: 'adtech', level: 'mid' },
-  { email: 'alex@email.com', industries: 'ai', level: 'mid' },
-  { email: 'preet@email.com', industries: 'ai', level: 'senior' },
-  { email: 'zoom@email.com', industries: 'ai', level: 'senior' },
-  { email: 'hep@email.com', industries: 'ai', level: 'senior' },
-  { email: 'dima@email.com', industries: 'ai', level: 'manager' },
-  { email: 'brendan@email.com', industries: 'fintech', level: 'manager' },
+  { email: 'lucy@email.com', industries: 'fintech', level: 'junior', UserId: 1 },
+  { email: 'bob@email.com', industries: 'fintech', level: 'junior', UserId: 2 },
+  { email: 'tom@email.com', industries: 'adtech', level: 'junior', UserId: 3 },
+  { email: 'wale@email.com', industries: 'adtech', level: 'mid', UserId: 4 },
+  { email: 'anthony@email.com', industries: 'adtech', level: 'mid', UserId: 5 },
+  { email: 'alex@email.com', industries: 'ai', level: 'mid', UserId: 6 },
+  { email: 'preet@email.com', industries: 'ai', level: 'senior', UserId: 7 },
+  { email: 'zoom@email.com', industries: 'ai', level: 'senior', UserId: 8 },
+  { email: 'hep@email.com', industries: 'ai', level: 'senior', UserId: 9 },
+  { email: 'dima@email.com', industries: 'ai', level: 'manager', UserId: 10 },
+  { email: 'brendan@email.com', industries: 'fintech', level: 'manager', UserId: 11 },
 ];
 
 const seekers = exampleSeekers.map(seeker => {
-  seeker.password = `${seeker.name}99`;
+  seeker.password = `${seeker.email[0]}99`;
   return seeker;
 })
 
 const exampleCompanies = [
-  { name: 'JPMorgan', industry: 'fintech', size: '10000' },
-  { name: 'Bloob', industry: 'fintech', size: '10000' },
-  { name: 'Xorp', industry: 'ai', size: '10000' },
-  { name: 'Email', industry: 'ai', size: '10000' },
-  { name: 'CupCo', industry: 'ai', size: '10000' },
-  { name: 'Plow', industry: 'adtech', size: '10000' },
-  { name: 'Apple', industry: 'adtech', size: '10000' },
-  { name: 'Hemp', industry: 'adtech', size: '10000' },
-  { name: 'Zang', industry: 'fintech', size: '10000' },
-  { name: 'Klort', industry: 'fintech', size: '10000' }
+  { name: 'JPMorgan', industry: 'fintech', size: '10000', UserId: 12 },
+  { name: 'Bloob', industry: 'fintech', size: '10000', UserId: 13 },
+  { name: 'Xorp', industry: 'ai', size: '10000', UserId: 14 },
+  { name: 'Email', industry: 'ai', size: '10000', UserId: 15 },
+  { name: 'CupCo', industry: 'ai', size: '10000', UserId: 16 },
+  { name: 'Plow', industry: 'adtech', size: '10000', UserId: 17 },
+  { name: 'Apple', industry: 'adtech', size: '10000', UserId: 18 },
+  { name: 'Hemp', industry: 'adtech', size: '10000', UserId: 19 },
+  { name: 'Zang', industry: 'fintech', size: '10000', UserId: 20 },
+  { name: 'Klort', industry: 'fintech', size: '10000', UserId: 21 }
 ]
 
 const companies = exampleCompanies.map(company => {
@@ -67,10 +68,16 @@ const resumes = [
 ]
 
 const seed = () =>
-Promise.all(seekers.map(seeker => Seeker.create(seeker)))
+Promise.all(seekers.map(seeker => {
+  User.create({userType: 'seeker'})
+  Seeker.create(seeker)
+}))
 .then( Ps => {
   console.log(`Seeded ${Ps.length} seekers`)
-  return Promise.all(companies.map(company => Company.create(company)))
+  return Promise.all(companies.map(company => {
+    User.create({userType: 'company'})
+    Company.create(company)
+  }))
 })
 .then( Ps => {
   console.log(`Seeded ${Ps.length} companies`)
