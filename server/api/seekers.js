@@ -13,6 +13,19 @@ router.get('/', (req, res, next) => {
         .catch(next);
 });
 
+router.post('/', (req, res, next) => {
+    seekers.create(req.body.user)
+        .then(person => {
+            req.body.resume.seekerId = person.id
+            resumes.create(req.body.resume)
+            return person
+        })
+        .then(cand => {
+            res.json(cand)
+        })
+        .catch(next);
+})
+
 router.get('/:seekerId', (req, res, next) => {
     seekers
         .findById({
