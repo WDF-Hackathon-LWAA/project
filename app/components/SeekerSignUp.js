@@ -8,16 +8,6 @@ export default class SeekerSignUp extends Component {
   this.state ={}
   this.handleOptionChange = this.handleOptionChange.bind(this);
 }
-  handleOptionChange(e){
-    console.log(e.target.name)
-    this.setState({selectedOption:e.target.name}) 
-  }
-  
-  handleClick(){
-    let bool = this.state.buttonClicked ? false : true
-    this.setState({buttonClicked: bool })
-  }
-
   render() {
    return (
      <div class="seeker-signup">

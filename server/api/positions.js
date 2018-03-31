@@ -5,7 +5,7 @@ const company = require("../db/models").Company;
 router.get('/', (req, res, next) => {
     positions
         .findAll({
-            include: [{ model: company }]
+            include: [{ all: true }]
         })
         .then(jobs => {
             res.json(jobs)
@@ -13,19 +13,13 @@ router.get('/', (req, res, next) => {
         .catch(next);
 });
 
-// router.post('/:id', (res, req, next) => {
-//   req.body.companyId =
-//   positions.create(req.body)
-
-// })
-
 router.get('/:level', (req, res, next) => {
     positions.findAll({
             where: {
                 level: req.params.level
             }
         }, {
-            include: [{ model: company }]
+            include: [{ all: true }]
         })
         .then(jobs => {
             res.json(jobs)
