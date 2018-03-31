@@ -1,0 +1,12 @@
+#node modules
+node_modules
+node_modules/
+/node_modules
+
+#bundle files
+bundle.js
+bundle.js.map
+
+npm-debug.log
+.DS_Store
+/*.env
