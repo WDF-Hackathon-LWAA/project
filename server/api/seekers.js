@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const seekers = require("../db/models").Seeker;
 const resumes = require("../db/models").Resume;
+const users = require('../db/models').User
 
 router.get('/', (req, res, next) => {
     seekers
@@ -14,14 +15,21 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    seekers.create(req.body.user)
-        .then(person => {
-            req.body.resume.seekerId = person.id
-            resumes.create(req.body.resume)
-            return person
+    users.create({
+            type: 'seeker'
         })
-        .then(cand => {
-            res.json(cand)
+        .then(coder => {
+            req.body.user.UserId = coder.id
+            seekers.create(req.body.user)
+                .then(person => {
+                    req.body.resume.seekerId = person.id
+                    resumes.create(req.body.resume)
+                    return person
+                })
+                .then(cand => {
+                    res.json(cand)
+                })
+                .catch(next);
         })
         .catch(next);
 })
@@ -33,7 +41,7 @@ router.get('/:seekerId', (req, res, next) => {
                 id: req.params.seekerId
             }
         }, {
-            include: [{ model: resumes }]
+            include: [{ all: true }]
         })
         .then(person => {
             res.json(person);
@@ -48,7 +56,7 @@ router.get('/:level', (req, res, next) => {
                 level: req.params.level
             }
         }, {
-            include: [{ model: resumes }]
+            include: [{ all: true }]
         })
         .then(people => {
             res.json(people);

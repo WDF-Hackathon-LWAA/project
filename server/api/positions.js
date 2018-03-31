@@ -13,12 +13,6 @@ router.get('/', (req, res, next) => {
         .catch(next);
 });
 
-// router.post('/:id', (res, req, next) => {
-//   req.body.companyId =
-//   positions.create(req.body)
-
-// })
-
 router.get('/:level', (req, res, next) => {
     positions.findAll({
             where: {
