@@ -22,7 +22,7 @@ class Role extends Component {
           )
         }
         <br />
-        <Link to="/"><input type="submit" value="Go Back" /></Link>
+        <Link to="/employerLanding"><input type="submit" value="Go Back" /></Link>
       </div>
 
     );

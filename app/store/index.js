@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-const middleware = applyMiddleware(thunkMiddleware);
+const middleware = applyMiddleware(thunkMiddleware, red);
 
 const reducer = combineReducers({
   // photos,
