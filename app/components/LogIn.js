@@ -11,7 +11,16 @@ export default class LogIn extends Component{
     evt.preventDefault()
     const email = evt.target.email.value
     const password = evt.target.password.value
-    console.log(email, password)
+    let userinfo = {
+      'email': email,
+      'password': password
+    }
+    axios.post('/auth/login/company', userinfo)
+      .then(user => {
+        if (user) {
+          history.push('/employerLanding');
+        }
+      })
   }
   render(){
     return (
