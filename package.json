@@ -7,7 +7,7 @@
     "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node scripts/seed.js",
-    "start-dev": "webpack -w & nodemon server"
+    "start-dev": "webpack -w & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "morgan": "^1.9.0",
     "nodemon": "^1.17.3",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13"
