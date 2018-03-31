@@ -14,8 +14,8 @@ export default class LogIn extends Component{
     console.log(email, password)
   }
   render(){
-    return(
-      <div>
+    return (
+      <div className="login-page">
       <form onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="email"><small>Email</small></label>

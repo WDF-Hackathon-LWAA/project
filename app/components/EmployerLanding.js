@@ -25,7 +25,6 @@ class EmployerLanding extends Component {
 
     let { roleId, companies } = this.state;
     let { name } = this.state.employer;
-    console.log(companies)
 
     if (companies) {
 
@@ -34,18 +33,20 @@ class EmployerLanding extends Component {
         <div className="employer-landing">
           <h2>Welcome back, {name}</h2>
           <br />
-          <h4>Your posted roles:</h4>
-          {
-            companies.map(company => {
-              return (
-                <li key={company.id}>{company.name}
-                  <Link to={`/role/${roleId}`}>
-                    <input type="submit" value="View a role" />
-                  </Link>
-                </li>
-              );
-            })
-          }
+          <div className="roles-titles">
+            <h4>Your posted roles:</h4>
+            {
+              companies.map(company => {
+                return (
+                  <li className="role" key={company.id}>{company.name}
+                    <Link to={`/role/${roleId}`} role={company}>
+                      <input className="role-button" type="submit" value="View a role" />
+                    </Link>
+                  </li>
+                );
+              })
+            }
+          </div>
         </div>
       );
     } else {

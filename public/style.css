@@ -2,12 +2,35 @@ body {
   background: #F3F5F6;
 }
 
-
-
-/***
-MAIN EMPLOYER CONTAINER
-***/
 .employer-landing {
   padding: 0;
-  border: 1px solid red;
+}
+
+.role {
+  list-style-type: none;
+}
+
+.roles-titles {
+  margin-left: 50px;
+}
+
+.role-button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  margin-left: 20px;
+  border-radius: 2px;
+}
+
+
+.role-button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.candidates-list {
+  list-style-type: none;
+}
+
+.candidate-container {
+  margin-left: 30px;
 }
