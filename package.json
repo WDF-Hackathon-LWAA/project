@@ -7,11 +7,7 @@
     "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node scripts/seed.js",
-<<<<<<< HEAD
     "start-dev": "webpack -w & nodemon server/index.js"
-=======
-    "start-dev": "webpack -w & nodemon server"
->>>>>>> 666e84c36bc006f49b8284415866ba0af1c33917
   },
   "repository": {
     "type": "git",
