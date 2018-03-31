@@ -1,21 +1,41 @@
 {
-    "name": "wdf_hackathon",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node server",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "seed": "node scripts/seed.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WDF-Hackathon-LWAA/project.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/WDF-Hackathon-LWAA/project/issues"
-    },
-    "homepage": "https://github.com/WDF-Hackathon-LWAA/project#readme"
+  "name": "wdf_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node scripts/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WDF-Hackathon-LWAA/project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WDF-Hackathon-LWAA/project/issues"
+  },
+  "homepage": "https://github.com/WDF-Hackathon-LWAA/project#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.17.3",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  }
 }
